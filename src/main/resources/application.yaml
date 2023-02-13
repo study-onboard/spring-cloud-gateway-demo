@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: routes.oschina
+          uri: https://www.oschina.net
+          predicates:
+            - Path=/oschina/**
+          filters:
+            - StripPrefix=1
+        - id: routes.163
+          uri: https://www.163.com
+          predicates:
+            - Path=/163/**
+          filters:
+            - StripPrefix=1
+            - name: CheckProduct
+              args:
+                name: AXAXBB
